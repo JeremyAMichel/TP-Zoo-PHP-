@@ -3,9 +3,11 @@
 include_once('./animals/terrestrial/tiger.php');
 include_once('./animals/terrestrial/bear.php');
 
+include_once('./animals/marine/fish.php');
+
 session_start();
 
-//  TEST TIGRE
+//  -------------------------TEST TIGER --------------------------------------------
 
 // $tiger = new Tiger(150.7, 85.1, 6);
 
@@ -33,31 +35,61 @@ session_start();
 // $tiger->wander();
 
 
-// TEST BEAR 
+// -------------------------TEST BEAR --------------------------------------------
 
-$bear = new Bear(300.5, 1.5, 22);
+// $bear = new Bear(300.5, 1.5, 22);
 
-echo $bear;
+// echo $bear;
+// echo '<br>';
+
+// $bear->makeSound('GROAR');
+
+// $bear->setIsHungry(true);
+// $bear->setIsSick(true);
+// $bear->sleep();
+
+// echo $bear;
+
+// $bear->eating();
+// $bear->cure();
+// $bear->wakeUp();
+
+// echo '<br>';
+
+// echo $bear;
+
+// echo '<br>';
+
+// $bear->wander();
+
+// -------------------------TEST FISH --------------------------------------------
+
+$fish = new Fish(0.05, 0.07, 1);
+
+echo $fish;
 echo '<br>';
 
-$bear->makeSound('GROAR');
+$fish->makeSound('bloups bloups');
 
-$bear->setIsHungry(true);
-$bear->setIsSick(true);
-$bear->sleep();
+$fish->setIsHungry(true);
+$fish->setIsSick(true);
+$fish->sleep();
 
-echo $bear;
+echo $fish;
 
-$bear->eating();
-$bear->cure();
-$bear->wakeUp();
-
-echo '<br>';
-
-echo $bear;
+$fish->eating();
+$fish->cure();
+$fish->wakeUp();
 
 echo '<br>';
 
-$bear->wander();
+echo $fish;
+
+echo '<br>';
+
+$fish->swim();
+
+
+
 
 ?>
