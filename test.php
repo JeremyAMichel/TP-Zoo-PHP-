@@ -9,6 +9,7 @@ include_once('./animals/aerial/eagle.php');
 
 include_once('./enclosure/enclosure.php');
 include_once('./enclosure/aviary.php');
+include_once('./enclosure/aquarium.php');
 
 session_start();
 
@@ -172,34 +173,57 @@ session_start();
 
 // -------------------------TEST AVIARY ENCLOSURE --------------------------------------------
 
-$aviary = new Aviary(50, 'Random Aviary');
+// $aviary = new Aviary(50, 'Random Aviary');
 
-echo $aviary;
+// echo $aviary;
 
-$bear1 = new Bear(300.5, 1.5, 22);
+// $bear1 = new Bear(300.5, 1.5, 22);
+// $eagle = new Eagle(4.1, 0.8, 17);
+
+// $aviary->addAnimal($bear1);
+// $aviary->addAnimal($eagle);
+
+// echo $aviary;
+
+// $aviary->displayAnimalCharacteristics();
+
+// $aviary->removeAnimal($eagle);
+
+// //the aviary get dirty, even in the top of it
+
+// $aviary->setCleanliness('dirty');
+// $aviary->setTopCleanliness('dirty');
+
+// echo $aviary;
+
+// $aviary->cleaning();
+
+// echo $aviary;
+
+// -------------------------TEST AQUARIUM ENCLOSURE --------------------------------------------
+$aquarium = new Aquarium(50, 'Random Aquarium');
+
+echo $aquarium;
+
 $eagle = new Eagle(4.1, 0.8, 17);
+$fish = new Fish(0.05, 0.07, 1);
 
-$aviary->addAnimal($bear1);
-$aviary->addAnimal($eagle);
+$aquarium->addAnimal($eagle);
+$aquarium->addAnimal($fish);
 
-echo $aviary;
+echo $aquarium;
 
-$aviary->displayAnimalCharacteristics();
+$aquarium->displayAnimalCharacteristics();
 
-$aviary->removeAnimal($eagle);
+$aquarium->removeAnimal($fish);
 
-//the aviary get dirty, even in the top of it
+// the aquarium get dirty
+$aquarium->setCleanliness('dirty');
 
-$aviary->setCleanliness('dirty');
-$aviary->setTopCleanliness('dirty');
+echo $aquarium;
 
-echo $aviary;
+$aquarium->cleaning();
 
-$aviary->cleaning();
-
-echo $aviary;
-
-
-// var_dump($aviary);
+echo $aquarium;
 
 ?>
