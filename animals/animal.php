@@ -37,8 +37,8 @@ abstract class Animal{
         $isSick = $this->getIsSick()== true ? 'yes' : 'no'; 
 
         $string= 'Species : ' . $this->getSpecies() . ' <br> ';
-        $string.= 'Weight : ' . $this->getWeight() . ' <br> ';
-        $string.= 'Height : ' . $this->getHeight() . ' <br> ';
+        $string.= 'Weight : ' . $this->getWeight() . 'kg <br> ';
+        $string.= 'Height : ' . $this->getHeight() . 'm <br> ';
         $string.= 'Age : ' . $this->getAge() . ' <br> ';
         $string.= 'IsHungry : ' . $isHungry . ' <br> ';
         $string.= 'IsSleeping : ' . $isSleeping . ' <br> ';
