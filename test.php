@@ -5,6 +5,8 @@ include_once('./animals/terrestrial/bear.php');
 
 include_once('./animals/marine/fish.php');
 
+include_once('./animals/aerial/eagle.php');
+
 session_start();
 
 //  -------------------------TEST TIGER --------------------------------------------
@@ -64,32 +66,57 @@ session_start();
 
 // -------------------------TEST FISH --------------------------------------------
 
-$fish = new Fish(0.05, 0.07, 1);
+// $fish = new Fish(0.05, 0.07, 1);
 
-echo $fish;
+// echo $fish;
+// echo '<br>';
+
+// $fish->makeSound('bloups bloups');
+
+// $fish->setIsHungry(true);
+// $fish->setIsSick(true);
+// $fish->sleep();
+
+// echo $fish;
+
+// $fish->eating();
+// $fish->cure();
+// $fish->wakeUp();
+
+// echo '<br>';
+
+// echo $fish;
+
+// echo '<br>';
+
+// $fish->swim();
+
+// -------------------------TEST EAGLE --------------------------------------------
+
+$eagle = new Eagle(4.1, 0.8, 17);
+
+echo $eagle;
 echo '<br>';
 
-$fish->makeSound('bloups bloups');
+$eagle->makeSound('flap-flap-flap');
 
-$fish->setIsHungry(true);
-$fish->setIsSick(true);
-$fish->sleep();
+$eagle->setIsHungry(true);
+$eagle->setIsSick(true);
+$eagle->sleep();
 
-echo $fish;
+echo $eagle;
 
-$fish->eating();
-$fish->cure();
-$fish->wakeUp();
-
-echo '<br>';
-
-echo $fish;
+$eagle->eating();
+$eagle->cure();
+$eagle->wakeUp();
 
 echo '<br>';
 
-$fish->swim();
+echo $eagle;
 
+echo '<br>';
 
+$eagle->fly();
 
 
 ?>
