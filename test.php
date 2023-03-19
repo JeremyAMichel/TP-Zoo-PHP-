@@ -152,9 +152,17 @@ $classicEnclosure->removeAnimal($bear1);
 
 echo $classicEnclosure;
 
+// enclosure get dirty, trying to clean it
+$classicEnclosure->setCleanliness('dirty');
+$classicEnclosure->cleaning();
+
+
 $classicEnclosure->removeAnimal($bear2);
 
 echo $classicEnclosure;
+
+// since the enclosure is empty we can finally clean it
+$classicEnclosure->cleaning();
 
 // since the enclosure is empty we can finally add our tiger
 $classicEnclosure->addAnimal($tiger1);

@@ -172,6 +172,22 @@ class Enclosure{
         }
         
     }
+
+
+    /**
+     * cleaning the enclosure if it's empty
+     * @return  self
+     */ 
+    public function cleaning():void{
+        
+        if($this->getActualSpecies()=='none'){
+            $this->setCleanliness('clean');
+        } else {
+            echo 'an enclosure that is not empty cannot be cleaned <br><br>';
+        }
+        
+    }
+
     
 
 
