@@ -7,7 +7,6 @@ include_once('./animals/animal.php');
  *
  * @author Jeremy Michel
  */
-
 class Enclosure{
 
     protected int $length = 6;
@@ -30,9 +29,9 @@ class Enclosure{
 
     // TOSTRING ex :
     public function __toString(): string {
-        $string= 'Enclosure name : ' . $this->name . ' <br> ';
-        $string.= 'Actual species : ' . $this->actualSpecies . ' <br> ';
-        $string.= 'Cleanliness : ' . $this->cleanliness . ' <br> ';
+        $string= 'Enclosure name : ' . $this->getName() . ' <br> ';
+        $string.= 'Actual species : ' . $this->getActualSpecies() . ' <br> ';
+        $string.= 'Cleanliness : ' . $this->getCleanliness() . ' <br> ';
         $string.= 'Animals : <br>';
         foreach($this->animals as $animal){
             $string.= ' * '.$animal->getSpecies().'<br>';
@@ -166,7 +165,7 @@ class Enclosure{
      */ 
     public function displayAnimalCharacteristics():void{
         
-        echo 'Characteristics of the animals in the enclosure '. $this->getName() .' : <br><br>';
+        echo 'Characteristics of the animals in the '.get_class($this).' '. $this->getName() .' : <br><br>';
         foreach($this->animals as $animal){
             echo $animal.'<br><br>';
         }
@@ -182,6 +181,11 @@ class Enclosure{
         
         if($this->getActualSpecies()=='none'){
             $this->setCleanliness('clean');
+
+            // if it's an aviary, we clean the top too
+            if(get_class($this) == 'Aviary'){
+                $this->setTopCleanliness('clean');
+            }
         } else {
             echo 'an enclosure that is not empty cannot be cleaned <br><br>';
         }

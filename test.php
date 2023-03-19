@@ -8,6 +8,7 @@ include_once('./animals/marine/fish.php');
 include_once('./animals/aerial/eagle.php');
 
 include_once('./enclosure/enclosure.php');
+include_once('./enclosure/aviary.php');
 
 session_start();
 
@@ -120,53 +121,85 @@ session_start();
 
 // $eagle->fly();
 
-// -------------------------TEST ENCLOSURE --------------------------------------------
+// -------------------------TEST CLASSIC ENCLOSURE --------------------------------------------
 
-$classicEnclosure = new Enclosure('Classic');
+// $classicEnclosure = new Enclosure('Classic');
 
-echo $classicEnclosure;
+// echo $classicEnclosure;
+
+// $bear1 = new Bear(300.5, 1.5, 22);
+// $bear2 = new Bear(320.1, 1.6, 25);
+// $tiger1 = new Tiger(150.7, 85.1, 6);
+
+// $classicEnclosure->addAnimal($bear1);
+
+// //trying to add a tiger, but the enclosure already contains a bear
+// $classicEnclosure->addAnimal($tiger1);
+
+// echo $classicEnclosure;
+
+// // add a second bear
+// $classicEnclosure->addAnimal($bear2);
+
+// // does it accept duplicates
+// $classicEnclosure->addAnimal($bear2);
+
+// echo $classicEnclosure;
+
+// // display the characteristics of the animals the enclosure contains
+// $classicEnclosure->displayAnimalCharacteristics();
+
+// $classicEnclosure->removeAnimal($bear1);
+
+// echo $classicEnclosure;
+
+// // enclosure get dirty, trying to clean it
+// $classicEnclosure->setCleanliness('dirty');
+// $classicEnclosure->cleaning();
+
+
+// $classicEnclosure->removeAnimal($bear2);
+
+// echo $classicEnclosure;
+
+// // since the enclosure is empty we can finally clean it
+// $classicEnclosure->cleaning();
+
+// // since the enclosure is empty we can finally add our tiger
+// $classicEnclosure->addAnimal($tiger1);
+
+// echo $classicEnclosure;
+
+// -------------------------TEST AVIARY ENCLOSURE --------------------------------------------
+
+$aviary = new Aviary(50, 'Random Aviary');
+
+echo $aviary;
 
 $bear1 = new Bear(300.5, 1.5, 22);
-$bear2 = new Bear(320.1, 1.6, 25);
-$tiger1 = new Tiger(150.7, 85.1, 6);
+$eagle = new Eagle(4.1, 0.8, 17);
 
-$classicEnclosure->addAnimal($bear1);
+$aviary->addAnimal($bear1);
+$aviary->addAnimal($eagle);
 
-//trying to add a tiger, but the enclosure already contains a bear
-$classicEnclosure->addAnimal($tiger1);
+echo $aviary;
 
-echo $classicEnclosure;
+$aviary->displayAnimalCharacteristics();
 
-// add a second bear
-$classicEnclosure->addAnimal($bear2);
+$aviary->removeAnimal($eagle);
 
-// does it accept duplicates
-$classicEnclosure->addAnimal($bear2);
+//the aviary get dirty, even in the top of it
 
-echo $classicEnclosure;
+$aviary->setCleanliness('dirty');
+$aviary->setTopCleanliness('dirty');
 
-// display the characteristics of the animals the enclosure contains
-$classicEnclosure->displayAnimalCharacteristics();
+echo $aviary;
 
-$classicEnclosure->removeAnimal($bear1);
+$aviary->cleaning();
 
-echo $classicEnclosure;
-
-// enclosure get dirty, trying to clean it
-$classicEnclosure->setCleanliness('dirty');
-$classicEnclosure->cleaning();
+echo $aviary;
 
 
-$classicEnclosure->removeAnimal($bear2);
-
-echo $classicEnclosure;
-
-// since the enclosure is empty we can finally clean it
-$classicEnclosure->cleaning();
-
-// since the enclosure is empty we can finally add our tiger
-$classicEnclosure->addAnimal($tiger1);
-
-echo $classicEnclosure;
+// var_dump($aviary);
 
 ?>
