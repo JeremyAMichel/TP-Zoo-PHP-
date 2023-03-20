@@ -47,6 +47,7 @@ class Enclosure{
     ////////////
 
     /**
+     * return enclosure length
      * @return int
      */
     public function getLength(): int
@@ -55,6 +56,7 @@ class Enclosure{
     }
 
     /**
+     * return enclosure actual species
      * @return string
      */
     public function getActualSpecies(): string
@@ -63,6 +65,7 @@ class Enclosure{
     }
 
     /**
+     * return enclosure name
      * @return string
      */
     public function getName(): string
@@ -71,6 +74,7 @@ class Enclosure{
     }
 
     /**
+     * return enclosure cleanliness
      * @return string
      */
     public function getCleanliness(): string

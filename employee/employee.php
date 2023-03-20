@@ -39,6 +39,7 @@ class Employee{
     ////////////
 
     /**
+     * return employee name
      * @return string
      */
     public function getName(): string
@@ -47,6 +48,7 @@ class Employee{
     }
 
     /**
+     * return employee age
      * @return int
      */
     public function getAge(): int
@@ -55,6 +57,7 @@ class Employee{
     }
 
     /**
+     * return employee gender
      * @return string
      */
     public function getGender(): string

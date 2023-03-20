@@ -13,6 +13,8 @@ include_once('./enclosure/aquarium.php');
 
 include_once('./employee/employee.php');
 
+include_once('./zoo/zoo.php');
+
 session_start();
 
 //  -------------------------TEST TIGER --------------------------------------------
@@ -232,13 +234,13 @@ session_start();
 
 // -------------------------TEST EMPLOYEE --------------------------------------------
 
-$employee = new Employee('Lucas Charpentier', 28, 'male');
+// $employee = new Employee('Lucas Charpentier', 28, 'male');
 
 // echo $employee;
 
-$classicEnclosure = new Enclosure('Classic');
-$cissalcEnclosure = new Enclosure('Cissalc');
-$bear1 = new Bear(300.5, 1.5, 22);
+// $classicEnclosure = new Enclosure('Classic');
+// $cissalcEnclosure = new Enclosure('Cissalc');
+// $bear1 = new Bear(300.5, 1.5, 22);
 // $tiger1 = new Tiger(300.5, 1.5, 22);
 // $bear2 = new Bear(320.1, 1.6, 25);
 // $bear3 = new Bear(12.1, 1.6, 25);
@@ -247,7 +249,7 @@ $bear1 = new Bear(300.5, 1.5, 22);
 // $bear6 = new Bear(222.1, 1.6, 25);
 // $bear7 = new Bear(333.1, 1.6, 25);
 
-$employee->addToEnclosure($classicEnclosure, $bear1);
+// $employee->addToEnclosure($classicEnclosure, $bear1);
 // $employee->addToEnclosure($classicEnclosure, $bear2);
 // $employee->addToEnclosure($classicEnclosure, $bear3);
 // $employee->addToEnclosure($classicEnclosure, $bear4);
@@ -255,15 +257,15 @@ $employee->addToEnclosure($classicEnclosure, $bear1);
 // $employee->addToEnclosure($classicEnclosure, $bear6);
 // $employee->addToEnclosure($classicEnclosure, $bear7);
 
-$employee->checkEnclosure($classicEnclosure);
-$employee->checkEnclosure($cissalcEnclosure);
+// $employee->checkEnclosure($classicEnclosure);
+// $employee->checkEnclosure($cissalcEnclosure);
 
 // $employee->removeFromEnclosure($classicEnclosure, $bear1);
-$employee->moveAnimal($classicEnclosure, $bear1, $cissalcEnclosure);
+// $employee->moveAnimal($classicEnclosure, $bear1, $cissalcEnclosure);
 
 
-$employee->checkEnclosure($classicEnclosure);
-$employee->checkEnclosure($cissalcEnclosure);
+// $employee->checkEnclosure($classicEnclosure);
+// $employee->checkEnclosure($cissalcEnclosure);
 
 
 // $classicEnclosure->addAnimal($bear1);
@@ -296,5 +298,20 @@ $employee->checkEnclosure($cissalcEnclosure);
 // $employee->cleaning($classicEnclosure);
 
 // echo $classicEnclosure;
+
+// -------------------------TEST ZOO --------------------------------------------
+
+$employee = new Employee('Lucas Charpentier', 28, 'male');
+$zoo = new Zoo('testZoo', $employee, 10);
+$bear1 = new Bear(300.5, 1.5, 22);
+$classicEnclosure = new Enclosure('Classic');
+
+$zoo->addEnclosure($classicEnclosure);
+$classicEnclosure->addAnimal($bear1);
+
+echo $zoo;
+
+$zoo->displayEnclosureCharacteristicsAndContent();
+$zoo->countAnimals();
 
 ?>
