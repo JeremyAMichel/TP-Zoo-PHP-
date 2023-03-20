@@ -143,7 +143,7 @@ class Enclosure{
 
     /**
      * Remove an Animal to the enclosure
-     * @return  self
+     * @return  void
      */ 
     public function removeAnimal(Animal $animal):void{
         // checks if the animal is in the enclosure
@@ -175,7 +175,7 @@ class Enclosure{
 
     /**
      * cleaning the enclosure if it's empty
-     * @return  self
+     * @return  void
      */ 
     public function cleaning():void{
         

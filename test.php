@@ -11,6 +11,8 @@ include_once('./enclosure/enclosure.php');
 include_once('./enclosure/aviary.php');
 include_once('./enclosure/aquarium.php');
 
+include_once('./employee/employee.php');
+
 session_start();
 
 //  -------------------------TEST TIGER --------------------------------------------
@@ -201,29 +203,98 @@ session_start();
 // echo $aviary;
 
 // -------------------------TEST AQUARIUM ENCLOSURE --------------------------------------------
-$aquarium = new Aquarium(50, 'Random Aquarium');
 
-echo $aquarium;
+// $aquarium = new Aquarium(50, 'Random Aquarium');
 
-$eagle = new Eagle(4.1, 0.8, 17);
-$fish = new Fish(0.05, 0.07, 1);
+// echo $aquarium;
 
-$aquarium->addAnimal($eagle);
-$aquarium->addAnimal($fish);
+// $eagle = new Eagle(4.1, 0.8, 17);
+// $fish = new Fish(0.05, 0.07, 1);
 
-echo $aquarium;
+// $aquarium->addAnimal($eagle);
+// $aquarium->addAnimal($fish);
 
-$aquarium->displayAnimalCharacteristics();
+// echo $aquarium;
 
-$aquarium->removeAnimal($fish);
+// $aquarium->displayAnimalCharacteristics();
 
-// the aquarium get dirty
-$aquarium->setCleanliness('dirty');
+// $aquarium->removeAnimal($fish);
 
-echo $aquarium;
+// // the aquarium get dirty
+// $aquarium->setCleanliness('dirty');
 
-$aquarium->cleaning();
+// echo $aquarium;
 
-echo $aquarium;
+// $aquarium->cleaning();
+
+// echo $aquarium;
+
+
+// -------------------------TEST EMPLOYEE --------------------------------------------
+
+$employee = new Employee('Lucas Charpentier', 28, 'male');
+
+// echo $employee;
+
+$classicEnclosure = new Enclosure('Classic');
+$cissalcEnclosure = new Enclosure('Cissalc');
+$bear1 = new Bear(300.5, 1.5, 22);
+// $tiger1 = new Tiger(300.5, 1.5, 22);
+// $bear2 = new Bear(320.1, 1.6, 25);
+// $bear3 = new Bear(12.1, 1.6, 25);
+// $bear4 = new Bear(444.1, 1.6, 25);
+// $bear5 = new Bear(555.1, 1.6, 25);
+// $bear6 = new Bear(222.1, 1.6, 25);
+// $bear7 = new Bear(333.1, 1.6, 25);
+
+$employee->addToEnclosure($classicEnclosure, $bear1);
+// $employee->addToEnclosure($classicEnclosure, $bear2);
+// $employee->addToEnclosure($classicEnclosure, $bear3);
+// $employee->addToEnclosure($classicEnclosure, $bear4);
+// $employee->addToEnclosure($classicEnclosure, $bear5);
+// $employee->addToEnclosure($classicEnclosure, $bear6);
+// $employee->addToEnclosure($classicEnclosure, $bear7);
+
+$employee->checkEnclosure($classicEnclosure);
+$employee->checkEnclosure($cissalcEnclosure);
+
+// $employee->removeFromEnclosure($classicEnclosure, $bear1);
+$employee->moveAnimal($classicEnclosure, $bear1, $cissalcEnclosure);
+
+
+$employee->checkEnclosure($classicEnclosure);
+$employee->checkEnclosure($cissalcEnclosure);
+
+
+// $classicEnclosure->addAnimal($bear1);
+
+// $classicEnclosure->addAnimal($bear2);
+
+// $bear1->setIsHungry(true);
+// $bear1->setIsSleeping(true);
+
+// $employee->toFeed($classicEnclosure);
+
+// $employee->checkEnclosure($classicEnclosure);
+
+
+
+// $aquarium = new Aquarium(50, 'Random Aquarium');
+
+// $fish = new Fish(0.05, 0.07, 1);
+
+// $aquarium->addAnimal($fish);
+
+// $employee->checkEnclosure($aquarium);
+
+// $classicEnclosure = new Enclosure('Classic');
+// $classicEnclosure->setCleanliness('dirty');
+// // $classicEnclosure->addAnimal($bear1);
+
+// echo $classicEnclosure;
+
+// $employee->cleaning($classicEnclosure);
+
+// echo $classicEnclosure;
 
 ?>
