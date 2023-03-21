@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create a Zoo</title>
+    <title>Create an Enclosure</title>
 
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.min.css">
 
@@ -17,39 +17,29 @@
 <body>
     <section>
         <div class="container mt-5">
-            <form action="createZoo.php" method="post">
+            <form action="createEnclosure.php" method="post">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nom du zoo : </label>
+                    <label for="name" class="form-label">Nom de l'enclos : </label>
                     <input class="form-control" type="text" name="name" id="name" min="2" max="99">
                 </div>
 
-                <div class="mb-5">
-                    <label for="maxEnclosure" class="form-label">Nombre d'enclos maximum : </label>
-                    <input class="form-control" type="number" name="maxEnclosure" id="maxEnclosure" min="1" max="20">
-                </div>
+                <?php if ($_POST['newEnclosure']=='aviary') { ?>
+                    <div class="mb-3">
+                        <label for="height" class="form-label">Hauteur en mètre de la Volière : </label>
+                        <input class="form-control" type="number" name="height" id="height" min="1" max="100" step="0.01">
+                    </div>
+                <?php } ?>
+
+                <?php if ($_POST['newEnclosure']=='aquarium') { ?>
+                    <div class="mb-3">
+                        <label for="salinity" class="form-label">Salinité de l'aquarium : </label>
+                        <input class="form-control" type="number" name="salinity" id="salinity" min="1" max="15" step="0.01">
+                    </div>
+                <?php } ?>
 
 
-
-                <div class="mt-3 mb-3">
-                    <label for="employee" class="form-label">Employee :</label>
-                    <input class="form-control" type="text" name="employee" id="employee" min="2" max="99">
-                </div>
-
-                <div class="mb-3">
-                    <label for="employeeAge" class="form-label">Age : </label>
-                    <input class="form-control" type="number" name="employeeAge" id="employeeAge" min="18" max="99">
-                </div>
-
-                <div class="mb-3">
-                    <label for="gender" class="form-label">Sexe :</label>
-
-                    <select class="form-select" name="gender" id="gender">
-                        <option value="male">Homme</option>
-                        <option value="female">Femme</option>
-                    </select>
-                </div>
                 
-                <button type="submit" class="btn btn-primary mt-3">Play</button>
+                <button type="submit" class="btn btn-primary mt-3">Créer</button>
             </form>
         </div>
     </section>

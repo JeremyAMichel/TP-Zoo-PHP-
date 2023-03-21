@@ -3,5 +3,5 @@
 session_start();
 $_SESSION=[];
 session_destroy();
-header('location: test.php');
+header('location: main.php');
 ?>
