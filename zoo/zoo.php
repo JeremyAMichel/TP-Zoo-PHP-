@@ -1,6 +1,7 @@
 <?php 
 
 include_once('./employee/employee.php');
+include_once('./enclosure/enclosure.php');
 
 /**
  * Class zoo.php
@@ -80,6 +81,19 @@ class Zoo{
         return $this->enclosures;
     }
 
+    /**
+     * return enclosure by name
+     * @return Enclosure
+     */
+    public function getEnclosureByName(string $enclosureName): Enclosure
+    {
+        foreach($this->getEnclosures() as $enclosure){
+            if($enclosure->getName() == $enclosureName){
+                return $enclosure;
+            }
+        }
+    }
+
 
     ////////////
     // SETTER //
@@ -127,7 +141,7 @@ class Zoo{
         if(count($this->getEnclosures())<$this->getMaxEnclosure()){
             // si l'enclos n'existe pas déjà
             if(!in_array($enclosure, $this->enclosures)){
-                        $this -> enclosures[] = $enclosure;
+                $this -> enclosures[] = $enclosure;
             }
         } else {
             echo 'no space in the zoo for another enclosure <br><br>';
