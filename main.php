@@ -29,6 +29,12 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
     $employee = $_SESSION['employee'];
     $zoo = $_SESSION['zoo'];
 
+    // $_SESSION['checkingEnclosure']->setCleanliness('dirty');
+    // $tiger = new Tiger(150.7, 85.1, 6);
+    // $_SESSION['checkingEnclosure']->addAnimal($tiger);
+    // $tiger->setIsHungry(true);
+
+
 
     include('./structure/top.html');
 
@@ -49,7 +55,12 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
                     <?php } ?> 
                     
                     <div class="card-body">
-                        <h5 class="card-title mb-3">Employée du Zoo</h5>
+                        <?php if($employee->getGender()==='female'){ ?>
+                            <h5 class="card-title mb-3">Employée du Zoo</h5>
+                        <?php } else { ?>
+                            <h5 class="card-title mb-3">Employé du Zoo</h5>
+                        <?php } ?> 
+                        
                         <p class="card-text">Nom : <?php echo $employee->getName() ?></p>
                         <p class="card-text">Âge : <?php echo $employee->getAge() ?> ans</p>
 
@@ -112,22 +123,37 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
                         <p class="card-text">Taille : <?php echo $_SESSION['checkingEnclosure']->getLength() ?></p>
                         <p class="card-text">Espèce : <?php echo $_SESSION['checkingEnclosure']->getActualSpecies() ?> </p>
                         <p class="card-text">Etat : <?php echo $_SESSION['checkingEnclosure']->getCleanliness() ?> </p>
+
+                        <?php if($_SESSION['checkingEnclosure']->getCleanliness()!='clean'){ ?>
+
+                        <form action="cleanEnclosure.php" method="post" class="d-flex">
+                            <input id="cleanEnclosure" name="cleanEnclosure" type="hidden" value="cleanEnclosure">
+
+                            <?php if(isset($_SESSION['checkingEnclosureNotEmpty'])) { ?>
+                                <p class="card-text text-danger"> L'enclos ne peut être nettoyer que s'il est vide</p>
+                            <?php } ?>
+
+                            <button type="submit" class="btn btn-primary">Nettoyer</button>
+                        </form>
+
+                        <?php } ?>
+
                     </div>
 
-                    <div class="card-body d-flex flex-column align-items-center">
+                    <div class="card-body d-flex flex-column align-items-center mb-5">
                         <h5 class="card-title mb-3">Animaux</h5>
                         <div class="w-100 d-flex flex-row justify-content-between">
                             <?php
                             if(count($_SESSION['checkingEnclosure']->getAnimals())!=0){
                                 foreach($_SESSION['checkingEnclosure']->getAnimals() as $animal){ ?>
-                                    <div>
+                                    <div class="border p-3">
                                         <p class="card-text">Espèce : <?php echo $animal->getSpecies() ?> </p>
                                         <p class="card-text">Poids : <?php echo $animal->getWeight() ?> </p>
                                         <p class="card-text">Taille : <?php echo $animal->getHeight() ?> </p>
                                         <p class="card-text">Age : <?php echo $animal->getAge() ?> </p>
-                                        <p class="card-text">Faim : <?php echo $animal->getIsHungry() ?> </p>
-                                        <p class="card-text">Dors : <?php echo $animal->getIsSleeping() ?> </p>
-                                        <p class="card-text">Malade : <?php echo $animal->getIsSick() ?> </p>
+                                        <p class="card-text">Faim : <?php echo $animal->getIsHungry() ?  'affamer' : 'rassasié' ?> </p>
+                                        <p class="card-text">Dors : <?php echo $animal->getIsSleeping() ? 'endormi' : 'éveillé' ?> </p>
+                                        <p class="card-text">Malade : <?php echo $animal->getIsSick() ? 'malade' : 'bonne santé' ?> </p>
                                     </div>
                                 <?php } ?>
                             <?php } else { ?>
@@ -135,7 +161,18 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
                                     <p class="card-text">Aucun animal.</p>
                                 </div>
                             <?php } ?>
-                        </div> 
+                        </div>
+                        <?php if(count($_SESSION['checkingEnclosure']->getAnimals())!=0){ ?>
+                            <form action="feedAnimals.php" method="post" class="d-flex">
+                                <input id="feedAnimals" name="feedAnimals" type="hidden" value="feedAnimals">
+
+                                <?php if(isset($_SESSION['checkingEnclosureAnimalSleepy'])) { ?>
+                                    <p class="card-text text-danger"> Certains animaux dormaient donc ils n'ont pas été nourris</p>
+                                <?php unset($_SESSION['checkingEnclosureAnimalSleepy']); } ?>
+
+                                <button type="submit" class="btn btn-primary">Nourrir les animaux</button>
+                            </form>
+                        <?php } ?>
                     </div>
                 </div>
 

@@ -183,16 +183,13 @@ class Enclosure{
      */ 
     public function cleaning():void{
         
-        if($this->getActualSpecies()=='none'){
-            $this->setCleanliness('clean');
+        $this->setCleanliness('clean');
 
-            // if it's an aviary, we clean the top too
-            if(get_class($this) == 'Aviary'){
-                $this->setTopCleanliness('clean');
-            }
-        } else {
-            echo 'an enclosure that is not empty cannot be cleaned <br><br>';
+        // if it's an aviary, we clean the top too
+        if(get_class($this) == 'Aviary'){
+            $this->setTopCleanliness('clean');
         }
+        
         
     }
 

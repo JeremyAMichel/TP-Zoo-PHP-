@@ -138,7 +138,7 @@ class Employee{
             }
         }
         if($someoneSleepy===1){
-            echo 'some animals were sleeping so they weren\'t fed <br><br>';
+            $_SESSION['checkingEnclosureAnimalSleepy']=1;
         }
         
     }
