@@ -20,24 +20,24 @@
             <form action="createZoo.php" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom du zoo : </label>
-                    <input class="form-control" type="text" name="name" id="name" min="2" max="99">
+                    <input class="form-control" type="text" name="name" id="name" min="2" max="99" required>
                 </div>
 
                 <div class="mb-5">
                     <label for="maxEnclosure" class="form-label">Nombre d'enclos maximum : </label>
-                    <input class="form-control" type="number" name="maxEnclosure" id="maxEnclosure" min="1" max="20">
+                    <input class="form-control" type="number" name="maxEnclosure" id="maxEnclosure" min="1" max="20" required>
                 </div>
 
 
 
                 <div class="mt-3 mb-3">
                     <label for="employee" class="form-label">Employee :</label>
-                    <input class="form-control" type="text" name="employee" id="employee" min="2" max="99">
+                    <input class="form-control" type="text" name="employee" id="employee" min="2" max="99" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="employeeAge" class="form-label">Age : </label>
-                    <input class="form-control" type="number" name="employeeAge" id="employeeAge" min="18" max="99">
+                    <input class="form-control" type="number" name="employeeAge" id="employeeAge" min="18" max="99" required>
                 </div>
 
                 <div class="mb-3">

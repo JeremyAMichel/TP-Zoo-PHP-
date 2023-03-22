@@ -20,20 +20,20 @@
             <form action="createEnclosure.php" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom de l'enclos : </label>
-                    <input class="form-control" type="text" name="name" id="name" min="2" max="99">
+                    <input class="form-control" type="text" name="name" id="name" min="2" max="99" required>
                 </div>
 
                 <?php if ($_POST['newEnclosure']=='aviary') { ?>
                     <div class="mb-3">
                         <label for="height" class="form-label">Hauteur en mètre de la Volière : </label>
-                        <input class="form-control" type="number" name="height" id="height" min="1" max="100" step="0.01">
+                        <input class="form-control" type="number" name="height" id="height" min="1" max="100" step="0.01" required>
                     </div>
                 <?php } ?>
 
                 <?php if ($_POST['newEnclosure']=='aquarium') { ?>
                     <div class="mb-3">
                         <label for="salinity" class="form-label">Salinité de l'aquarium : </label>
-                        <input class="form-control" type="number" name="salinity" id="salinity" min="1" max="15" step="0.01">
+                        <input class="form-control" type="number" name="salinity" id="salinity" min="1" max="15" step="0.01" required>
                     </div>
                 <?php } ?>
 

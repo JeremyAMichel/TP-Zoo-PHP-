@@ -133,16 +133,10 @@ class Enclosure{
      * @return  self
      */ 
     public function addAnimal(Animal $animal):void{
-        // if there is already an animal of the same species, or if there is no animals
-        if($this->getActualSpecies() == $animal->getSpecies() || $this->getActualSpecies()=='none'){
-            if(!in_array($animal, $this->animals)){
-                $this -> animals[] = $animal;
-                $this -> setActualSpecies($animal->getSpecies());
-            }
-        } else {
-            echo 'In an enclosure all animals must be of the same species <br><br>';
+        if(!in_array($animal, $this->animals)){
+            $this -> animals[] = $animal;
+            $this -> setActualSpecies($animal->getSpecies());
         }
-        
     }
 
     /**

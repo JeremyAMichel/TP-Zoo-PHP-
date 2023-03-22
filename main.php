@@ -66,9 +66,9 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
 
                         <hr>
 
+                        <!-- check enclosure -->
                         <form action="checkEnclosure.php" method="post" class="d-flex align-items-center justify-content-center">
                             
-
                             <?php if(count($zoo->getEnclosures())>0){ ?>
 
                             <label for="checkingEnclosure" class="form-label me-3">Liste enclos</label>
@@ -85,6 +85,27 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
                                 <p>Aucun enclos</p>
                             <?php } ?>
                         </form>
+
+                        <hr>
+
+                        <!-- add animal -->
+                        <form action="formAnimal.php" method="post" class="d-flex align-items-center justify-content-between">
+
+                            <label for="addAnimal" class="form-label me-3">Choix enclos :</label>
+
+                            <select class="form-select me-3" name="addAnimal" id="addAnimal">
+                                <?php foreach($zoo->getEnclosures() as $enclosure){ ?>
+                                    <option value="<?php echo $enclosure->getName() ?>"><?php echo $enclosure->getName() ?></option>
+                                <?php } ?>
+                            </select>
+
+                            <button type="submit" class="btn btn-primary">Ajouter animal</button>
+                        </form>
+
+                        <?php if(isset($_SESSION['notSameSpecies'])) { ?>
+                            <p class="card-text text-danger"> L'animal ne peut être ajouté car il y a déjà un animal d'une autre espèce dans l'enclos</p>
+                        <?php } ?>
+
                     </div>
                 </div>
 
@@ -93,9 +114,39 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
                     <img src="/img/zoo.png" class="card-img-top" alt="zoo">
                     
                     <div class="card-body">
-                        <h5 class="card-title mb-3">Zoo</h5>
-                        <p class="card-text">Nom : <?php echo $zoo->getName() ?></p>
-                        <p class="card-text">Enclos : <?php echo count($zoo->getEnclosures()) ?>/<?php echo $zoo->getMaxEnclosure() ?></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="card-title mb-3">Zoo</h5>
+                                <p class="card-text">Nom : <?php echo $zoo->getName() ?></p>
+                                <p class="card-text">Enclos : <?php echo count($zoo->getEnclosures()) ?>/<?php echo $zoo->getMaxEnclosure() ?></p>
+                            </div>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger h-50" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Nouveau Zoo
+                            </button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title fs-5" id="exampleModalLabel">ATTENTION !</h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Cette action supprimera votre zoo, êtes-vous sûr ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+
+                                    <form action="deleteSession.php" method="post" class="d-flex align-items-center justify-content-center">
+                                        <button type="submit" class="btn btn-danger">Accepter</button>
+                                    </form>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <hr>
 
@@ -142,7 +193,7 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
 
                     <div class="card-body d-flex flex-column align-items-center mb-5">
                         <h5 class="card-title mb-3">Animaux</h5>
-                        <div class="w-100 d-flex flex-row justify-content-between">
+                        <div class="w-100 d-flex flex-row justify-content-between mb-3">
                             <?php
                             if(count($_SESSION['checkingEnclosure']->getAnimals())!=0){
                                 foreach($_SESSION['checkingEnclosure']->getAnimals() as $animal){ ?>
