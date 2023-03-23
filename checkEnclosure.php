@@ -17,8 +17,6 @@ include_once('./zoo/zoo.php');
 
 session_start();
 
-// var_dump($_POST['checkingEnclosure']);
-// var_dump($_SESSION['zoo']);
 
 if(isset($_POST['checkingEnclosure'])){
     $_SESSION['checkingEnclosure'] = $_SESSION['zoo']->getEnclosureByName($_POST['checkingEnclosure']);

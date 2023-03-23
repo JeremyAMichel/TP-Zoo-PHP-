@@ -16,28 +16,16 @@ include_once('./employee/employee.php');
 include_once('./zoo/zoo.php');
 
 session_start();
-// $_SESSION=[];
-// session_destroy();
-// header('location: main.php');
-// var_dump($_SESSION['zoo']);
 
 
 if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
 {
-    // $employee = new Employee($_SESSION['employeeName'], $_SESSION['employeeAge'], $_SESSION['employeeGender']);
-    // $zoo = new Zoo($_SESSION['zooName'],$employee,$_SESSION['zooMaxEnclosure']);
     $employee = $_SESSION['employee'];
     $zoo = $_SESSION['zoo'];
     if(!isset($_SESSION['idAnimal'])){
         $_SESSION['idAnimal'] = 1;
     }
     
-    // $_SESSION['checkingEnclosure']->setCleanliness('dirty');
-    // $tiger = new Tiger(150.7, 85.1, 6);
-    // $_SESSION['checkingEnclosure']->addAnimal($tiger);
-    // $tiger->setIsHungry(true);
-
-
 
     include('./structure/top.html');
 

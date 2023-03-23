@@ -26,17 +26,6 @@ if(isset($_POST['name']) && isset($_POST['maxEnclosure']) && isset($_POST['emplo
     $_SESSION['employee']= $employee;
     $_SESSION['zoo']= $zoo;
 
-
-    //zoo
-    // $_SESSION['zooName']= $_POST['name'];
-    // $_SESSION['zooMaxEnclosure']= $_POST['maxEnclosure'];
-
-    // //employee
-    // $_SESSION['employeeName']= $_POST['employee'];
-    // $_SESSION['employeeAge']= $_POST['employeeAge'];
-    // $_SESSION['employeeGender']= $_POST['gender'];
-
-
 }
 
 
