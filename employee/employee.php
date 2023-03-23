@@ -171,18 +171,8 @@ class Employee{
      */ 
     public function moveAnimal(Enclosure $enclosureFrom, Animal $animal, Enclosure $enclosureTo):void
     {
-        // if there is already an animal of the same species, or if there is no animals
-        if($enclosureTo->getActualSpecies() == $animal->getSpecies() || $enclosureTo->getActualSpecies()=='none'){
-            // if there is enough space for the animal
-            if($enclosureTo->getLength() > count($enclosureTo->getAnimals())){
-                $this->removeFromEnclosure($enclosureFrom, $animal);
-                $this->addToEnclosure($enclosureTo, $animal);
-            } else {
-                echo 'the enclosure is already full <br><br>';
-            }
-        } else {
-            echo 'In an enclosure all animals must be of the same species <br><br>';
-        }
+        $this->removeFromEnclosure($enclosureFrom, $animal);
+        $this->addToEnclosure($enclosureTo, $animal);
     }
 
 

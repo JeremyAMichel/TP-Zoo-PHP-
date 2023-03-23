@@ -91,6 +91,20 @@ class Enclosure{
         return $this->animals;
     }
 
+    /**
+     * return animal by id
+     * @return Animal
+     */
+    public function getAnimalById(int $id): Animal
+    {
+        // return $this->animals;
+        foreach($this->getAnimals() as $animal){
+            if($animal->getId() == $id){
+                return $animal;
+            }
+        }
+    }
+
     ////////////
     // SETTER //
     ////////////

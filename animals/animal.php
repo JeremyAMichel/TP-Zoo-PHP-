@@ -8,6 +8,7 @@
 
 abstract class Animal{
 
+    protected int $id;
     protected string $species;
     protected float $weight = 0.0;
     protected float $height = 0.0;
@@ -21,8 +22,9 @@ abstract class Animal{
     /**
      * Animal constructor.
      */
-    public function __construct(string $species, float $weight, float $height, int $age)
+    public function __construct(int $id, string $species, float $weight, float $height, int $age)
     {
+        $this->id = $id;
         $this->species = $species;
         $this->weight = $weight;
         $this->height = $height;
@@ -50,6 +52,14 @@ abstract class Animal{
     ////////////
     // GETTER //
     ////////////
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     /**
      * @return string

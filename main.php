@@ -28,7 +28,10 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
     // $zoo = new Zoo($_SESSION['zooName'],$employee,$_SESSION['zooMaxEnclosure']);
     $employee = $_SESSION['employee'];
     $zoo = $_SESSION['zoo'];
-
+    if(!isset($_SESSION['idAnimal'])){
+        $_SESSION['idAnimal'] = 1;
+    }
+    
     // $_SESSION['checkingEnclosure']->setCleanliness('dirty');
     // $tiger = new Tiger(150.7, 85.1, 6);
     // $_SESSION['checkingEnclosure']->addAnimal($tiger);
@@ -86,6 +89,8 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
                             <?php } ?>
                         </form>
 
+                        <?php if(count($zoo->getEnclosures())!=0) { ?>
+
                         <hr>
 
                         <!-- add animal -->
@@ -104,6 +109,7 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
 
                         <?php if(isset($_SESSION['notSameSpecies'])) { ?>
                             <p class="card-text text-danger"> L'animal ne peut être ajouté car il y a déjà un animal d'une autre espèce dans l'enclos</p>
+                        <?php } ?>
                         <?php } ?>
 
                     </div>
@@ -161,6 +167,19 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
 
                             <button type="submit" class="btn btn-primary">Créer</button>
                         </form>
+
+                        <hr>
+
+                        <p class="card-text">Nombre d'animal : <?php $_SESSION['zoo']->countAnimals() ?></p>
+
+                        <hr>
+                        
+                        <?php if(count($_SESSION['zoo']->getEnclosures())>0) { ?>
+                        <form action="jourSuivant.php" method="post" class="d-flex align-items-center justify-content-center">
+                            <button type="submit" class="btn btn-primary">Jour suivant</button>
+                        </form>
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -191,6 +210,8 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
 
                     </div>
 
+
+                    <!-- LES ANIMAUX -->
                     <div class="card-body d-flex flex-column align-items-center mb-5">
                         <h5 class="card-title mb-3">Animaux</h5>
                         <div class="w-100 d-flex flex-row justify-content-between mb-3">
@@ -205,6 +226,59 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
                                         <p class="card-text">Faim : <?php echo $animal->getIsHungry() ?  'affamer' : 'rassasié' ?> </p>
                                         <p class="card-text">Dors : <?php echo $animal->getIsSleeping() ? 'endormi' : 'éveillé' ?> </p>
                                         <p class="card-text">Malade : <?php echo $animal->getIsSick() ? 'malade' : 'bonne santé' ?> </p>
+
+                                        <div class="d-flex justify-content-between gap-3">
+                                            <!-- RETIRER UN ANIMAL -->
+                                            <form action="removeAnimal.php" method="post" class="d-flex align-items-center justify-content-center">
+                                                <input id="removeAnimal" name="removeAnimal" type="hidden" value="<?php echo $animal->getId(); ?>">
+                                                <button type="submit" class="btn btn-danger">Retirer</button>
+                                            </form>
+
+                                            <!-- MOVE UN ANIMAL -->
+                                            
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-success h-50" data-bs-toggle="modal" data-bs-target="#moveAnimal">
+                                            Déplacer
+                                            </button>
+
+                                            
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="moveAnimal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h2 class="modal-title fs-5" id="moveAnimalTitle">Déplacer un animal</h2>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Vers quel enclos voulez-vous envoyer l'animal ?
+                                                    
+                                                    
+
+                                                    <!-- METTRE UN SELECT DES ENCLOS -->
+
+                                                        <form action="moveAnimal.php" method="post" class="d-flex align-items-center justify-content-center">
+
+                                                            <select class="form-select me-3" name="moveAnimalTo" id="moveAnimalTo">
+                                                                <?php foreach($zoo->getEnclosures() as $enclosure){ ?>
+                                                                    <option value="<?php echo $enclosure->getName() ?>"><?php echo $enclosure->getName() ?></option>
+                                                                <?php } ?>
+                                                            </select>
+
+                                                            <input id="moveAnimal" name="moveAnimal" type="hidden" value="<?php echo $animal->getId(); ?>">
+                                                            <input id="moveAnimalFrom" name="moveAnimalFrom" type="hidden" value="<?php echo $_SESSION['checkingEnclosure']->getName(); ?>">
+                                                            
+                                                            <button type="submit" class="btn btn-success">Déplacer</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 <?php } ?>
                             <?php } else { ?>
@@ -223,6 +297,14 @@ if(isset($_SESSION['employee']) && isset($_SESSION['zoo']))
 
                                 <button type="submit" class="btn btn-primary">Nourrir les animaux</button>
                             </form>
+                        <?php } ?>
+
+                        <?php if(isset($_SESSION['notEnoughSpaceMove'])){ ?>
+                        <p class="card-text text-danger"> Il n'y a pas assez d'espace dans l'enclos destinataire</p>
+                        <?php } ?>
+
+                        <?php if(isset($_SESSION['notSameSpeciesMove'])){ ?>
+                        <p class="card-text text-danger"> L'animal ne peut être ajouté car il y a déjà un animal d'une autre espèce dans l'enclos destinataire</p>
                         <?php } ?>
                     </div>
                 </div>

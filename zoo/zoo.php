@@ -192,9 +192,36 @@ class Zoo{
             foreach($this->enclosures as $enclosure){
                 $numberAnimal+=count($enclosure->getAnimals());
             }
-            echo 'There is '.$numberAnimal.' animal(s) in the zoo<br><br>';
+            echo $numberAnimal.' animaux dans le zoo';
         }
         
+    }
+
+    /**
+     * Days pass, values ​​change randomly
+     * @return  void
+     */ 
+    public function main():void{
+        foreach($this->getEnclosures() as $enclosure){
+            if(rand(1, 10)>3 && rand(1, 10)<=6){
+                $enclosure->setCleanliness('moderately clean');
+            } else {
+                if(rand(1, 10)>6 && rand(1, 10)<=10){
+                    $enclosure->setCleanliness('dirty');
+                }
+            }
+            foreach($enclosure->getAnimals() as $animal){
+                if(rand(1, 10)>6){
+                    $animal->setIsSleeping(true);
+                } else {
+                    $animal->setIsSleeping(false);
+                }
+
+                if(rand(1,10)>5){
+                    $animal->setIsHungry(true);
+                }
+            }
+        }  
     }
 
 }

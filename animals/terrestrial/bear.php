@@ -7,9 +7,9 @@ class Bear extends Terrestrial
     /**
      * Bear constructor.
      */
-    public function __construct(float $weight, float $height, int $age)
+    public function __construct(int $id, float $weight, float $height, int $age)
     {
-        parent::__construct('bear', $weight, $height, $age);
+        parent::__construct($id, 'bear', $weight, $height, $age);
     }
     
 }

@@ -26,18 +26,20 @@ if(isset($_POST['species']) && isset($_POST['weight']) && isset($_POST['height']
 
         switch ($_POST['species']) {
             case 'tiger':
-                $newAnimal = new Tiger($_POST['weight'], $_POST['height'], $_POST['age']);
+                $newAnimal = new Tiger($_SESSION['idAnimal'], $_POST['weight'], $_POST['height'], $_POST['age']);
                 break;
             case 'bear':
-                $newAnimal = new Bear($_POST['weight'], $_POST['height'], $_POST['age']);
+                $newAnimal = new Bear($_SESSION['idAnimal'], $_POST['weight'], $_POST['height'], $_POST['age']);
                 break;
             case 'fish':
-                $newAnimal = new Fish($_POST['weight'], $_POST['height'], $_POST['age']);
+                $newAnimal = new Fish($_SESSION['idAnimal'], $_POST['weight'], $_POST['height'], $_POST['age']);
                 break;
             case 'eagle':
-                $newAnimal = new Eagle($_POST['weight'], $_POST['height'], $_POST['age']);
+                $newAnimal = new Eagle($_SESSION['idAnimal'], $_POST['weight'], $_POST['height'], $_POST['age']);
                 break;
         }
+
+        $_SESSION['idAnimal']++;
 
         $enclosure->addAnimal($newAnimal);
         unset($_SESSION['notSameSpecies']);

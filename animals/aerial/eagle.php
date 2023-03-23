@@ -7,9 +7,9 @@ class Eagle extends Aerial
     /**
      * Eagle constructor.
      */
-    public function __construct(float $weight, float $height, int $age)
+    public function __construct(int $id, float $weight, float $height, int $age)
     {
-        parent::__construct('eagle', $weight, $height, $age);
+        parent::__construct($id, 'eagle', $weight, $height, $age);
     }
     
 }

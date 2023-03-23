@@ -7,9 +7,9 @@ abstract class Marine extends Animal
     /**
      * Marine constructor.
      */
-    public function __construct(string $species, float $weight, float $height, int $age)
+    public function __construct(int $id, string $species, float $weight, float $height, int $age)
     {
-        parent::__construct($species, $weight, $height, $age);
+        parent::__construct($id, $species, $weight, $height, $age);
     }
 
     public function swim()
